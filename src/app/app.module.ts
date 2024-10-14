@@ -20,6 +20,12 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import {
+  NbAuthJWTToken,
+  NbAuthModule,
+  NbPasswordAuthStrategy,
+} from '@nebular/auth';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,8 +45,47 @@ import {
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    NbAuthModule.forRoot({
+      strategies: [
+        NbPasswordAuthStrategy.setup({
+          name: 'email',
+          token: {
+            class: NbAuthJWTToken,
+          },
+          baseEndpoint: environment.apiUrl,
+          login: {
+            endpoint: '/auth/login',
+            method: 'post',
+            redirect: {
+              success: '/',
+              failure: null,
+            },
+          },
+          register: {
+            endpoint: '/auth/sign-up',
+            method: 'post',
+          },
+          logout: {
+            endpoint: '/auth/sign-out',
+            method: 'post',
+          },
+          requestPass: {
+            endpoint: '/auth/request-pass',
+            method: 'post',
+          },
+          resetPass: {
+            endpoint: '/auth/reset-pass',
+            method: 'post',
+          },
+          refreshToken: {
+            endpoint: '/auth/refresh-token',
+            method: 'post',
+          },
+        }),
+      ],
+      forms: {},
+    }),
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
