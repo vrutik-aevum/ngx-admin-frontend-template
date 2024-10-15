@@ -20,6 +20,7 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,8 +40,10 @@ import {
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'), // lazy loading echarts
+    }),
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
