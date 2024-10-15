@@ -6,11 +6,7 @@ import { LayoutService } from '../../../@core/utils';
 @Component({
   selector: 'ngx-traffic-chart',
   template: `
-    <div echarts
-         [options]="option"
-         class="echart"
-         (chartInit)="onChartInit($event)">
-    </div>
+    
   `,
 })
 export class TrafficChartComponent implements AfterViewInit, OnDestroy {

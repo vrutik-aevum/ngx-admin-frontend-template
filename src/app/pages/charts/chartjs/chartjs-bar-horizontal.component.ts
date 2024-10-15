@@ -4,7 +4,12 @@ import { NbThemeService } from '@nebular/theme';
 @Component({
   selector: 'ngx-chartjs-bar-horizontal',
   template: `
-    <chart type="horizontalBar" [data]="data" [options]="options"></chart>
+      <canvas
+      baseChart
+      type="radar"
+      [data]="data"
+      [options]="options"
+    ></canvas>
   `,
 })
 export class ChartjsBarHorizontalComponent implements OnDestroy {
@@ -17,7 +22,7 @@ export class ChartjsBarHorizontalComponent implements OnDestroy {
 
       const colors: any = config.variables;
       const chartjs: any = config.variables.chartjs;
-
+ 
       this.data = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June'],
         datasets: [{
