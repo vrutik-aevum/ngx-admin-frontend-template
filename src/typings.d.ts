@@ -11,6 +11,3 @@ interface NodeModule {
 }
 
 declare var tinymce: any;
-
-// @ts-ignore
-declare var echarts: any;
